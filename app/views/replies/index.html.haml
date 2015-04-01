@@ -1,0 +1,20 @@
+%p#notice= notice
+%h1 Listing Replies
+%table
+  %thead
+    %tr
+      %th User
+      %th Post
+      %th Text
+      %th{:colspan => "3"}
+  %tbody
+    - @replies.each do |reply|
+      %tr
+        %td= reply.user
+        %td= reply.post
+        %td= reply.text
+        %td= link_to 'Show', reply
+        %td= link_to 'Edit', edit_reply_path(reply)
+        %td= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Reply', new_reply_path

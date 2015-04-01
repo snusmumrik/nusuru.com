@@ -1,0 +1,125 @@
+/* Selector */
+li {
+    list-style-type: none;
+
+    label {
+        margin-right: 10px;
+    }
+
+    .inline {
+        margin-right: 20px;
+    }
+}
+
+th {
+    vertical-align: middle !important;
+    text-align: center !important;
+}
+
+td {
+    vertical-align: middle !important;
+}
+
+/* Class */
+.float-left {
+    float: left;
+    margin-right: 30px;
+}
+
+.clear {
+    clear: both;
+}
+
+.right {
+    text-align: right;
+}
+
+.left {
+    text-align: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.middle {
+    vertical-align: middle !important;
+}
+
+.blue {
+    color:blue;
+}
+
+.green {
+    color:green;
+}
+
+.red {
+    color: red;
+}
+
+.main_container {
+    margin-bottom: 80px;
+}
+
+.field>label {
+    padding-top: 12px;
+    margin-right: 5px;
+}
+
+.field input[type="text"] {
+    margin-right: 15px;
+}
+
+.beneath {
+    margin-top: 3px;
+    margin-left: 5px;
+}
+
+.form-narrow {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.label-necessary {
+    color: red !important;
+}
+
+.inline {
+    float: left;
+
+    div {
+        float: left;
+        vertical-align: middle;
+    }
+
+    label {
+        margin-bottom: 6px;
+    }
+
+    input[type='submit'] {
+        margin-left: 20px;
+    }
+}
+
+.title {
+    float: left;
+    width: 120px;
+    padding-top: 7px;
+}
+
+.normal {
+    font-size: 1em !important;
+}
+
+.small {
+    font-size: 0.8em !important;
+}
+
+.ad-top {
+    text-align: center;
+}
+
+.user-info {
+    margin-top: 10px;
+}

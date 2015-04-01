@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong User:
+  = @reply.user
+%p
+  %strong Post:
+  = @reply.post
+%p
+  %strong Text:
+  = @reply.text
+= link_to 'Edit', edit_reply_path(@reply)
+|
+= link_to 'Back', replies_path

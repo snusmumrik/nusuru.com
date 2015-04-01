@@ -1,0 +1,138 @@
+ja:
+  activerecord:
+    models:
+      admin_user: admin_user  #g
+      image: image  #g
+      post: 投稿
+      reply: 情報提供
+      user: ユーザー
+
+    attributes:
+      admin_user:
+        current_sign_in_at: current_sign_in_at  #g
+        current_sign_in_ip: current_sign_in_ip  #g
+        email: email  #g
+        encrypted_password: encrypted_password  #g
+        last_sign_in_at: last_sign_in_at  #g
+        last_sign_in_ip: last_sign_in_ip  #g
+        remember_created_at: remember_created_at  #g
+
+      image:
+        deleted_at: deleted_at  #g
+        image_content_type: image_content_type  #g
+        image_file_name: image_file_name  #g
+        image_file_size: image_file_size  #g
+        image_updated_at: image_updated_at  #g
+        imageable: :activerecord.models.imageable  #g
+        user: :activerecord.models.user  #g
+        imageable_type: imageable_type  #g
+
+      post:
+        chassis_number: 車台番号
+        date: 盗難日時
+        deleted_at: deleted_at  #g
+        features: 特徴
+        images: 画像
+        location: 盗難場所
+        model: モデル
+        registration_number: 登録番号
+        situation: 状況
+        title: 題名
+        user: :activerecord.models.user  #g
+
+      reply:
+        post: :activerecord.models.post  #g
+        text: メッセージ
+        user: :activerecord.models.user  #g
+
+      user:
+        current_password: 現在のパスワード
+        current_sign_in_at: current_sign_in_at  #g
+        current_sign_in_ip: current_sign_in_ip  #g
+        deleted_at: deleted_at  #g
+        email: メールアドレス
+        encrypted_password: encrypted_password  #g
+        image: 画像
+        image_content_type: image_content_type  #g
+        image_file_name: image_file_name  #g
+        image_file_size: image_file_size  #g
+        image_updated_at: image_updated_at  #g
+        last_sign_in_at: last_sign_in_at  #g
+        last_sign_in_ip: last_sign_in_ip  #g
+        name: 名前
+        password: パスワード
+        password_confirmation: パスワードの確認
+        posts: posts  #g
+        remember_created_at: remember_created_at  #g
+        remember_me: パスワードを記憶
+        reset_password_sent_at: reset_password_sent_at  #g
+        reset_password_token: reset_password_token  #g
+
+  links:
+    back: 戻る
+    destroy: 削除
+    edit: 編集
+    index: 一覧
+    new: 新規
+    show: 詳細
+    update: 更新
+    save: 登録
+    search: 検索
+
+    user:
+      sign_in: ログイン
+      sign_out: ログアウト
+      sign_up: 新規会員登録
+      change_password: パスワードの変更
+      reset_password: パスワードの再設定
+      forgot_password: パスワードをお忘れですか？
+      resend_confirmation: 登録メールの再送
+      edit: 登録情報編集
+
+    reply:
+      submit: 通報
+
+  messages:
+    created: を登録しました。
+    updated: を更新しました。
+    destroy: を削除しました。
+    are_you_sure: 削除してよろしいですか？
+    unauthorided: 権限のないリクエストです
+    sign_out: ログアウトしてもよろしいですか？
+    successfully_created: を登録しました。
+    successfully_deleted: を削除しました。
+    successfully_updated: を更新しました。
+    cargo:
+      successfully_confirmed: を確定しました。
+      successfully_canceled: をキャンセルしました。
+      successfully_assigned: を受注しました。
+      confirmation_faild: すでに割り当てられています。
+
+    offer:
+      confirm: 見積を確定してよろしいですか？
+      cancel: 見積をキャンセルしてよろしいですか？
+
+  views:
+    index: 一覧
+    new: 新規作成
+    show: 詳細
+    edit: 編集
+    error: エラー
+
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
+
+    user:
+      sign_in: ログイン
+      sign_out: ログアウト
+      sign_up: 新規会員登録
+      forgot_password: パスワードをお忘れですか？
+      resend_confirmation: 登録メールの再送
+      leave_blank_if_you_don't_want_to_change_it: 変更しない場合は空白
+      we_need_your_current_password_to_confirm_your_changes: 変更の確認のため
+
+  deleted_at: deleted_at  #g

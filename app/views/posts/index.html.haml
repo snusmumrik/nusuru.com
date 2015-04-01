@@ -1,0 +1,42 @@
+.narrow
+  .form-inline
+    .form-group
+      = form_for Post.new, method: :get do
+        = text_field_tag :keyword, params[:keyword], class: "form-control"
+        = submit_tag t("links.search"), class: "btn btn-default"
+
+  .right
+    %p= link_to t("links.new") + t("activerecord.models.post"), new_post_path, class: "btn btn-default"
+
+  .float-right{data:{no_turbolink: true}}= paginate @posts
+  .clear.ad-top
+  %table.table.table-striped.table-bordered
+    - @posts.each do |post|
+      %tr
+        %td= link_to post.title, post, data: {no_turbolink: true}
+      %tr
+        %td
+          %ul
+            %li
+              - if post.images
+                - post.images.each do |image|
+                  = link_to image_tag(image.url(:thumb)), image.url(:medium), "data-lightbox" => image.url(:medium)
+            %li= "#{t('activerecord.attributes.post.location')}: #{post.location}"
+            %li= "#{t('activerecord.attributes.post.date')}: #{post.date.strftime('%Y/%m/%d')}"
+            %li= "#{t('activerecord.attributes.post.chassis_number')}: #{post.chassis_number}"
+            %li= "#{t('activerecord.attributes.post.registration_number')}: #{post.registration_number}"
+            %li= "#{t('activerecord.attributes.post.features')}: #{post.features}"
+            %li= "#{t('activerecord.attributes.post.situation')}: #{post.situation}"
+          .right
+            .user-info
+              - unless user_signed_in? && post.user == current_user
+                = link_to t("activerecord.models.reply"), "#{new_reply_path}/#{post.id}", class: "btn btn-info", data: {no_turbolink: true}
+              - if post.user && post.user.image
+                = link_to image_tag(post.user.image.url(:thumb), height:60), post.user.image.url(:medium), "data-lightbox" => post.user.image.url(:medium)
+              = post.user.name
+              %span.small= post.created_at.strftime("%Y/%m/%d %H:%M")
+  .float-right= paginate @posts, data: {no_turbolink: true}
+  .clear
+  - if @posts.size >= 3
+    .right
+      %p= link_to t("links.new") + t("activerecord.models.post"), new_post_path, class: "btn btn-default"

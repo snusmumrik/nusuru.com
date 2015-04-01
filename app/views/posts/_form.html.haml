@@ -1,0 +1,43 @@
+= form_for(@post, multipart: true) do |f|
+  - if @post.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@post.errors.count, "error")
+        prohibited this post from being saved:
+      %ul
+        - @post.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+  .field
+    = f.label :location
+    = f.text_field :location, class: "form-control"
+  .form-inline
+    .form-group
+      .field
+        = f.label :date
+        = f.date_select :date, {}, class: "form-control"
+  .field
+    = f.label :model
+    = f.text_field :model, class: "form-control"
+  .field
+    = f.label :chassis_number
+    = f.text_field :chassis_number, class: "form-control"
+  .field
+    = f.label :registration_number
+    = f.text_field :registration_number, class: "form-control"
+  .field
+    = f.label :features
+    = f.text_field :features, class: "form-control"
+  .field
+    = f.label :situation
+    = f.text_field :situation, class: "form-control"
+  %div
+    = f.label :images
+    %br
+      = f.file_field :images, type: :file, multiple: true
+      %span.small ＊ 画像は３点まで選択できます。Ctrlキーを押しながら画像を選択して下さい。
+  .actions
+    = f.submit class: "btn btn-default"
+    = link_to t("links.back"), posts_path, class: "btn btn-default"

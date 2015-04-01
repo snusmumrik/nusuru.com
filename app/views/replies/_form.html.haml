@@ -1,0 +1,39 @@
+= form_for(@reply) do |f|
+  - if @reply.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@reply.errors.count, "error")
+        prohibited this reply from being saved:
+      %ul
+        - @reply.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :text
+    = f.text_area :text, rows: 5, class: "form-control"
+
+  %table.table.table-striped.table-bordered
+    %tr
+      %td= @post.title
+    %tr
+      %td
+        %ul
+          %li
+            - if @post.images
+              - @post.images.each do |image|
+                = link_to image_tag(image.url(:thumb)), image.url(:medium), "data-lightbox" => image.url(:medium)
+          %li= "#{t('activerecord.attributes.post.location')}: #{@post.location}"
+          %li= "#{t('activerecord.attributes.post.date')}: #{@post.date.strftime('%Y/%m/%d')}"
+          %li= "#{t('activerecord.attributes.post.chassis_number')}: #{@post.chassis_number}"
+          %li= "#{t('activerecord.attributes.post.registration_number')}: #{@post.registration_number}"
+          %li= "#{t('activerecord.attributes.post.features')}: #{@post.features}"
+          %li= "#{t('activerecord.attributes.post.situation')}: #{@post.situation}"
+        .right
+          .user-info
+            - if @post.user && @post.user.image
+              = link_to image_tag(@post.user.image.url(:thumb), height:60), @post.user.image.url(:medium), "data-lightbox" => @post.user.image.url(:medium)
+            = @post.user.name
+            %span.small= @post.created_at.strftime("%Y/%m/%d %H:%M")
+
+  .actions
+    = f.submit t("links.reply.submit"), class: "btn btn-success"
+    = link_to t("links.back"), :back, class: "btn btn-default", data: {no_turbolink: true}

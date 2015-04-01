@@ -1,0 +1,26 @@
+<%= @reply.post.user.name %>さま
+
+以下の内容で情報提供を受け付けました。
+
+メッセージ:
+<%= @reply.text %>
+
+通報日時:
+<%= @reply.created_at.strftime("%Y/%m/%d %H:%M") %>
+
+投稿内容:
+<%= @reply.post.title %>
+<%= @reply.post.location %>
+<%= @reply.post.date.strftime("%Y/%m/%d %H:%M") %>
+<%= @reply.post.model %>
+<%= @reply.post.chassis_number %>
+<%= @reply.post.registration_number %>
+<%= @reply.post.features %>
+<%= @reply.post.situation %>
+
+<%= link_to "投稿を見る", @reply.post %>
+
+ご利用ありがとうございました。
+
+ぬするー情報局
+nusuru.com

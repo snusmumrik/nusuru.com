@@ -1,0 +1,20 @@
+.narrow
+  %table.table.table-striped
+    %tr
+      %th 新着情報
+    -# - @posts.each do |post|
+    -#   %tr
+    -#     %td
+    -#       %span.small
+    -#         = link_to "#{post.board.name} #{post.board.category}", board_path(post.board), data: {no_turbolink: true}
+    -#       %br
+    -#       = link_to post.title, post, data: {no_turbolink: true}
+    -#       %br
+    -#       - if post.images
+    -#         - post.images.each do |image|
+    -#           = link_to image_tag(image.url(:thumb)), image.url(:medium), "data-lightbox" => image.url(:medium)
+    -#       .right
+    -#         %span.small= post.created_at.strftime("%Y/%m/%d %H:%M")
+
+  .center.caution
+    本サービスのご利用は、利用者様の責任でお願いいたします。
