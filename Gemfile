@@ -52,7 +52,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'cancancan'
 gem 'devise'
 gem 'devise-i18n'
