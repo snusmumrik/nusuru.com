@@ -12,7 +12,10 @@
     = f.text_field :title, class: "form-control"
   .field
     = f.label :location
-    = f.text_field :location, class: "form-control"
+    .form-group
+      .input-group
+        .input-group-addon 沖縄県
+        = f.text_field :location, class: "form-control"
   .form-inline
     .form-group
       .field
