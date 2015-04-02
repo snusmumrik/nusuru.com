@@ -5,12 +5,12 @@
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
-    %meta{:content => "ぬするー情報局 沖縄の#{@description} 盗難車情報サイトです。", :name => "description"}/
-    %meta{:content => "ぬするー情報局,#{@keywords},沖縄,盗難車,掲示板", :name => "keywords"}/
+    %meta{:content => "ヌスルー情報局 沖縄の#{@description} 盗難車情報サイトです。", :name => "description"}/
+    %meta{:content => "ヌスルー情報局,#{@keywords},沖縄,盗難車,掲示板", :name => "keywords"}/
     %meta{:content => "", :name => "author"}/
     %link{:href => "", :rel => "shortcut icon"}/
     %title
-      ぬするー情報局 #{@description}
+      ヌスルー情報局 #{@description}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -18,7 +18,7 @@
     .navbar.navbar-default.navbar-fixed-top
       .container
         .navbar-header
-          %a.navbar-brand{"data-no-turbolink" => "true", :href => "/"} ぬするー情報局
+          %a.navbar-brand{"data-no-turbolink" => "true", :href => "/"} ヌスルー情報局
           %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
             %span.icon-bar
             %span.icon-bar
@@ -52,13 +52,13 @@
       %header.center
         %h1
           %a{"data-no-turbolink" => "true", :href => "/"}
-            %img{:alt => "ぬするー情報局", :src => "/logo.png"}/
+            %img{:alt => "ヌスルー情報局", :src => "/logo.png"}/
       .main-content
         = yield
     %footer
       %div
         ©#{Date.today.year}
-        %a{"data-no-turbolink" => "true", :href => "/"} ぬするー情報局 nusuru.com
+        %a{"data-no-turbolink" => "true", :href => "/"} ヌスルー情報局 nusuru.com
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
