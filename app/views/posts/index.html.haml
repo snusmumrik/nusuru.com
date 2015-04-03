@@ -1,14 +1,10 @@
-.ad-top.small
-  Produced by
-  = link_to  "ニシムラモータース", "http://nishimuramotors.com", target: "blank"
-
 .narrow
   .form-inline
     .form-group
       = form_for Post.new, method: :get do
         = text_field_tag :keyword, params[:keyword], class: "form-control"
         = submit_tag t("links.search"), class: "btn btn-default"
-        %span.margin-left ← 盗難情報が検索できます（※例 車体番号やナンバープレート番号や盗難場所）
+        %span.margin-left ← 盗難情報が検索できます（※例 車体番号、ナンバープレート、車種、盗難場所など）
 
   .right
     %p= link_to t("links.new") + t("activerecord.models.post"), new_post_path, class: "btn btn-default"

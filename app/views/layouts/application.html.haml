@@ -52,7 +52,15 @@
       %header.center
         %h1
           %a{"data-no-turbolink" => "true", :href => "/"}
-            %img{:alt => "ヌスルー情報局", :src => "/logo.png"}/
+            %img{:alt => "ヌスルー情報局", :src => "/logo.png"}
+
+      .ad-top.small
+        Produced by
+        = link_to  "ニシムラモータース", "http://nishimuramotors.com", target: "blank"
+
+      .theft
+        = link_to image_tag( "/top.jpg", height: 150), "/theft"
+
       .main-content
         = yield
     %footer
