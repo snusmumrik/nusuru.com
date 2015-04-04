@@ -72,6 +72,7 @@ ja:
     back: 戻る
     destroy: 削除
     edit: 編集
+    found: 掲載解除
     index: 一覧
     new: 新規
     show: 詳細
@@ -97,6 +98,7 @@ ja:
     updated: を更新しました。
     destroy: を削除しました。
     are_you_sure: 削除してよろしいですか？
+    found: 盗難車は見つかりましたか？
     unauthorided: 権限のないリクエストです
     sign_out: ログアウトしてもよろしいですか？
     successfully_created: を登録しました。
