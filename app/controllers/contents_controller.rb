@@ -18,4 +18,11 @@ class ContentsController < ApplicationController
       render :text => "Page does not exists.", :status => 404
     end
   end
+
+  def downloadpdf
+    file_name="nusuru.com.pdf"
+    filepath = Rails.root.join('public',file_name)
+    stat = File::stat(filepath)
+    send_file(filepath, filename: file_name, length: stat.size)
+  end
 end

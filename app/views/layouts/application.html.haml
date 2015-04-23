@@ -29,12 +29,16 @@
               %a{"data-no-turbolink" => "true", :href => "/"} 沖縄の盗難車情報サイト
           %ul.nav.navbar-nav.navbar-right
             %li
+              %a{:href => "/contents/downloadpdf/download"}
+                %span.glyphicon.glyphicon-download{"aria-hidden" => "true"}
+                配布用チラシはこちら
+            %li
               %a{:href => "/rules"}
-                %span.glyphicon.glyphicon-exclamation-sign{"aria-hidden" => "true"}>
+                %span.glyphicon.glyphicon-exclamation-sign{"aria-hidden" => "true"}
                 ルール・免責事項
             %li
               %a{:href => "/faq"}
-                %span.glyphicon.glyphicon-question-sign{"aria-hidden" => "true"}>
+                %span.glyphicon.glyphicon-question-sign{"aria-hidden" => "true"}
                 よくある質問
             - if user_signed_in?
               %li= link_to '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>'.html_safe + controller.current_user.name, "/user"
