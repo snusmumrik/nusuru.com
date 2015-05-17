@@ -15,23 +15,26 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    .navbar.navbar-default.navbar-fixed-top
-      .container
+    %div
+      - if notice
+        .alert.alert-success
+          %p#notice= notice
+      - if alert
+        .alert.alert-error
+          %p#alert= alert
+
+    .jumbotron
+      %header.center
+        = link_to image_tag("/header.jpg", alt: "ヌスルー情報局"), root_path, data: { no_turbolink: true }
+
+      .navbar.navbar-default
         .navbar-header
-          %a.navbar-brand{"data-no-turbolink" => "true", :href => "/"} ヌスルー情報局
           %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
         #navbar-main.navbar-collapse.collapse
           %ul.nav.navbar-nav
-            %li
-              %a{"data-no-turbolink" => "true", :href => "/"} 沖縄の盗難車情報サイト
-          %ul.nav.navbar-nav.navbar-right
-            %li
-              %a{:href => "/contents/downloadpdf/download"}
-                %span.glyphicon.glyphicon-download{"aria-hidden" => "true"}
-                配布用チラシはこちら
             %li
               %a{:href => "/rules"}
                 %span.glyphicon.glyphicon-exclamation-sign{"aria-hidden" => "true"}
@@ -45,34 +48,23 @@
               %li= link_to '<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>'.html_safe + t("links.user.sign_out"), destroy_user_session_path, :method => :delete, data: { confirm: t("messages.sign_out") }
             - else
               %li= link_to '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'.html_safe + t("links.user.sign_in"), new_user_session_path
-    %div
-      - if notice
-        .alert.alert-success
-          %p#notice= notice
-      - if alert
-        .alert.alert-error
-          %p#alert= alert
-    .jumbotron
-      %header.center
-        %h1
-          %a{"data-no-turbolink" => "true", :href => "/"}
-            %img{:alt => "ヌスルー情報局", :src => "/logo.png"}
-
-      .ad-top.small
-        Produced by
-        = link_to  "ニシムラモータース", "http://nishimuramotors.com", target: "blank"
-
-      .theft
-        = link_to image_tag( "/top.jpg", height: 150), "/theft"
 
       .main-content
         = yield
     %footer
+      .center.caution
+        本サービスのご利用は、<br>
+        利用者様の責任でお願いいたします。
       %div
         ©#{Date.today.year}
         %a{"data-no-turbolink" => "true", :href => "/"} ヌスルー情報局 nusuru.com
       .links
         %a{"data-no-turbolink" => "true", :href => "http://okinawatakarajima.com", :target => "blank"} 沖縄の個人売買総合サイト 沖縄宝島 okinawatakarajima.com
+      .small
+        %i
+          Produced by
+          = link_to "ニシムラモータース", "http://nishimuramotors.com", target: :blank
+
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

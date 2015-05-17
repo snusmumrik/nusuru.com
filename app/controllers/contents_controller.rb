@@ -6,6 +6,9 @@ class ContentsController < ApplicationController
   def show
     if params[:id] && File.exist?(path = "#{Rails.root.to_s}/app/views/contents/#{params[:id]}.html.haml")
       case params[:id]
+      when "index"
+        @description = "沖縄県の盗難車情報"
+        @keywords = "沖縄県,盗難情報"
       when "rules"
         @description = "ルール・免責事項"
         @keywords = "ルール・免責事項"

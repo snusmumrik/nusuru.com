@@ -1,46 +1,62 @@
 .narrow
-  .form-inline
-    .form-group
-      = form_for Post.new, method: :get do
-        = text_field_tag :keyword, params[:keyword], class: "form-control"
-        = submit_tag t("links.search"), class: "btn btn-default"
-        %span.margin-left ← 盗難情報が検索できます（※例 車体番号、ナンバープレート、車種、盗難場所など）
+  .container
+    .row
+      .col-md-4
+        .title 盗難情報が<br>検索できます
+        .clear
+        .subtitle ※例 車体番号、<br>ナンバープレート、<br>車種、盗難場所など
+        .clear
+          .form-inline
+            .form-group
+              = form_for Post.new, method: :get do
+                = text_field_tag :keyword, params[:keyword], class: "form-control input-lg"
+                = submit_tag t("links.search"), class: "btn btn-default"
 
-  .right
-    %p= link_to t("links.new") + t("activerecord.models.post"), new_post_path, class: "btn btn-default"
+        .title 配布用チラシ<br>はこちら
+        .clear
+        .subtitle
+          ヌスルー情報局のチラシを<br>ダウンロードし印刷して<br>周囲のひとに呼びかけましょう！
+        .image
+          = link_to image_tag("/nusuru.com.pdf"), "/nusuru.com.pdf", "data-lightbox" => "/nusuru.com.pdf"
+          .download
+            = link_to "ダウンロードはこちら", "/contents/downloadpdf/download"
 
-  .float-right{data:{no_turbolink: true}}= paginate @posts
-  .clear.ad-top
-  %table.table.table-striped.table-bordered
-    - @posts.each do |post|
-      %tr
-        %td= link_to post.title, post, data: {no_turbolink: true}
-      %tr
-        %td
-          %ul
-            %li
-              - if post.images
-                - post.images.each do |image|
-                  = link_to image_tag(image.url(:thumb)), image.url(:medium), "data-lightbox" => image.url(:medium)
-            %li= "#{t('activerecord.attributes.post.location')}: #{post.location}"
-            %li= "#{t('activerecord.attributes.post.date')}: #{post.date.strftime('%Y/%m/%d')}"
-            %li= "#{t('activerecord.attributes.post.model')}: #{post.model}"
-            %li= "#{t('activerecord.attributes.post.chassis_number')}: #{post.chassis_number}"
-            %li= "#{t('activerecord.attributes.post.registration_number')}: #{post.registration_number}"
-            %li= "#{t('activerecord.attributes.post.features')}: #{post.features}"
-            %li= "#{t('activerecord.attributes.post.situation')}: #{post.situation}"
+      .col-md-8
+        .right
+          %p= link_to t("links.new") + t("activerecord.models.post"), new_post_path, class: "btn btn-default btn-lg"
+
+        .float-right{data:{no_turbolink: true}}= paginate @posts
+        .clear.ad-top
+        %table.table.table-striped.table-bordered
+          - @posts.each do |post|
+            %tr
+              %td.post-title= link_to post.title, post, data: {no_turbolink: true}
+            %tr
+              %td
+                %ul
+                  %li
+                    - if post.images
+                      - post.images.each do |image|
+                        = link_to image_tag(image.url(:thumb)), image.url(:medium), "data-lightbox" => image.url(:medium)
+                  %li= "#{t('activerecord.attributes.post.location')}: #{post.location}"
+                  %li= "#{t('activerecord.attributes.post.date')}: #{post.date.strftime('%Y/%m/%d')}"
+                  %li= "#{t('activerecord.attributes.post.model')}: #{post.model}"
+                  %li= "#{t('activerecord.attributes.post.chassis_number')}: #{post.chassis_number}"
+                  %li= "#{t('activerecord.attributes.post.registration_number')}: #{post.registration_number}"
+                  %li= "#{t('activerecord.attributes.post.features')}: #{post.features}"
+                  %li= "#{t('activerecord.attributes.post.situation')}: #{post.situation}"
+                .right
+                  .user-info
+                    - if user_signed_in? && post.user == current_user
+                      = link_to t("links.found"), post, :method => :delete, :data => { :confirm => t("messages.found")}, :class => "btn btn-success"
+                    - else
+                      = link_to t("activerecord.models.reply"), "#{new_reply_path}/#{post.id}", class: "btn btn-info", data: {no_turbolink: true}
+                    - if post.user && post.user.image
+                      = link_to image_tag(post.user.image.url(:thumb), height:60), post.user.image.url(:medium), "data-lightbox" => post.user.image.url(:medium)
+                    = post.user.name
+                    %span.small= post.created_at.strftime("%Y/%m/%d %H:%M")
+        .float-right= paginate @posts, data: {no_turbolink: true}
+        .clear
+        - if @posts.size >= 3
           .right
-            .user-info
-              - if user_signed_in? && post.user == current_user
-                = link_to t("links.found"), post, :method => :delete, :data => { :confirm => t("messages.found")}, :class => "btn btn-success"
-              - else
-                = link_to t("activerecord.models.reply"), "#{new_reply_path}/#{post.id}", class: "btn btn-info", data: {no_turbolink: true}
-              - if post.user && post.user.image
-                = link_to image_tag(post.user.image.url(:thumb), height:60), post.user.image.url(:medium), "data-lightbox" => post.user.image.url(:medium)
-              = post.user.name
-              %span.small= post.created_at.strftime("%Y/%m/%d %H:%M")
-  .float-right= paginate @posts, data: {no_turbolink: true}
-  .clear
-  - if @posts.size >= 3
-    .right
-      %p= link_to t("links.new") + t("activerecord.models.post"), new_post_path, class: "btn btn-default"
+            %p= link_to t("links.new") + t("activerecord.models.post"), new_post_path, class: "btn btn-default btn-lg"
