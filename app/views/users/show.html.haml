@@ -32,6 +32,4 @@
               - if post.user == current_user
                 = link_to t("links.destroy"), post, :method => :delete, :data => { :confirm => t("messages.are_you_sure")}, :class => "btn btn-sm btn-danger"
   .float-right{data:{no_turbolink: true}}= paginate @posts, data: {no_turbolink: true}
-  .clear
-  - if @posts.size > 3
-    = link_to t("links.new") + t("activerecord.models.post"), "#{new_post_path}/#{@board.id}", class: "btn btn-default"
+
