@@ -137,9 +137,4 @@ ja:
       leave_blank_if_you_don't_want_to_change_it: 変更しない場合は空白
       we_need_your_current_password_to_confirm_your_changes: 変更の確認のため
 
-  simple_captcha:
-    placeholder: ""
-    label: "表示された文字を入力してください。"
-    refresh_button_text: "文字を更新"
-    message:
-      default: "文字列の入力が正しくありません。"
+  deleted_at: deleted_at  #g
