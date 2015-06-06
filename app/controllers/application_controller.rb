@@ -9,4 +9,6 @@ class ApplicationController < ActionController::Base
       format.json { render json: {message: exception.message}, status: :unauthorized }
     end
   end
+
+  include SimpleCaptcha::ControllerHelpers
 end

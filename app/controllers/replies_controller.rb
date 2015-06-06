@@ -2,6 +2,7 @@
 class RepliesController < ApplicationController
   before_action :set_reply, only: [:show, :edit, :update, :destroy]
   before_action :set_post, only: [:new, :create]
+  before_action :validate_simple_captcha, only: [:create]
 
   # # GET /replies
   # # GET /replies.json
@@ -46,6 +47,7 @@ class RepliesController < ApplicationController
         ReplyMailer.new_reply_email(@reply).deliver_now
 
         session[:post_id] = nil
+      flash[:notice] = "返信メールを送信しました。。"
 
         format.html { redirect_to @reply.post, notice: t("activerecord.models.reply") + t("messages.successfully_created") }
         format.json { render :show, status: :created, location: @reply}
@@ -99,6 +101,13 @@ class RepliesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def reply_params
-    params.require(:reply).permit(:user_id, :post_id, :text)
+    params.require(:reply).permit(:user_id, :post_id, :text, :captcha, :captcha_key)
+  end
+
+  def validate_simple_captcha
+    unless simple_captcha_valid?
+      flash[:alert] = t("simple_captcha.message.default")
+      redirect_to "#{new_reply_path}/#{session[:post_id]}"
+    end
   end
 end
