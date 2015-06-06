@@ -3,6 +3,8 @@ class RepliesController < ApplicationController
   before_action :set_reply, only: [:show, :edit, :update, :destroy]
   before_action :set_post, only: [:new, :create]
 
+  respond_to :html
+
   # # GET /replies
   # # GET /replies.json
   # def index
@@ -29,30 +31,24 @@ class RepliesController < ApplicationController
   def create
     @reply = Reply.new(reply_params)
     @reply.user = current_user if current_user
-    @reply.post_id = session[:post_id]
+    @post = Post.find(session[:post_id])
+    @reply.post = @post
 
     body = @reply.text
-    jp_length = body.gsub(/[a-zA-Z0-9]/, "").to_s.split(//).size
+    jp_length = body.gsub(/[a-zA-Z0-9,.;:'"_\[\]<>\/= ]/, "").to_s.split(//).size
     body_length = body.split(//).size
 
-    if jp_length < body_length * 0.5
+    if jp_length < body_length * 0.2
       flash[:alert] = "スパム投稿防止の為、受け付けできません。"
       redirect_to root_path
-      return
-    end
+    elsif @reply.save
+      ReplyMailer.new_reply_email(@reply).deliver_now
 
-    respond_to do |format|
-      if @reply.save
-        ReplyMailer.new_reply_email(@reply).deliver_now
-
-        session[:post_id] = nil
-
-        format.html { redirect_to @reply.post, notice: t("activerecord.models.reply") + t("messages.successfully_created") }
-        format.json { render :show, status: :created, location: @reply}
-      else
-        format.html { render :new }
-        format.json { render json: @reply.errors, status: :unprocessable_entity }
-      end
+      session[:post_id] = nil
+      flash[:notice] = "情報提供ありがとうございました！"
+      respond_with(@post, location: post_path(@post))
+    else
+      respond_with(@reply)
     end
   end
 

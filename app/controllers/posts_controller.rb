@@ -3,6 +3,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+  respond_to :html
+
   # GET /posts
   # GET /posts.json
   def index
@@ -38,21 +40,24 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
 
-    respond_to do |format|
-      if @post.save
-        if params[:post][:images]
-          params[:post][:images].each_with_index { |image, i|
-            return if i > 2
-            @post.images.create(user: current_user, image: image)
-          }
-        end
+    body = @post.situation
+    jp_length = body.gsub(/[a-zA-Z0-9,.;:'"_\[\]<>\/= ]/, "").to_s.split(//).size
+    body_length = body.split(//).size
 
-        format.html { redirect_to @post, notice: t("activerecord.models.post") + t("messages.successfully_created") }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+    if jp_length < body_length * 0.5
+      flash[:alert] = "スパム投稿防止の為、受け付けできません。"
+      redirect_to root_path
+    elsif @post.save
+      if params[:post][:images]
+        params[:post][:images].each_with_index { |image, i|
+          return if i > 2
+          @post.images.create(user: current_user, image: image)
+        }
       end
+      flash[:notice] = "投稿しました。"
+      respond_with(@post, location: post_path(@post))
+    else
+      respond_with(@post)
     end
   end
 
