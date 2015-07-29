@@ -90,6 +90,9 @@ ja:
       resend_confirmation: 登録メールの再送
       edit: 登録情報編集
 
+    post:
+      new: 盗難登録
+
     reply:
       submit: 通報
 

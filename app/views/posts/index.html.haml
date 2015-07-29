@@ -23,7 +23,7 @@
 
       .col-md-8
         .right
-          %p= link_to t("links.new") + t("activerecord.models.post"), new_post_path, class: "btn btn-default btn-lg"
+          %p= link_to t("links.post.new"), new_post_path, class: "btn btn-default btn-lg"
 
         .float-right{data:{no_turbolink: true}}= paginate @posts
         .clear.ad-top
