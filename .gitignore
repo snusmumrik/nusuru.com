@@ -12,4 +12,12 @@
 !/log/.keep
 /tmp
 
+*/.DS_Store
+
+config/database.yml
+config/environments/production.rb
+config/initializers/secret_token.rb
+config/initializers/devise.rb
+
+public/assets
 public/images
