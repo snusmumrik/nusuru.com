@@ -55,7 +55,7 @@
                       = link_to image_tag(post.user.image.url(:thumb), height:60), post.user.image.url(:medium), "data-lightbox" => post.user.image.url(:medium)
                     = post.user.name
                     %span.small= post.created_at.strftime("%Y/%m/%d %H:%M")
-        .float-right= paginate @posts, data: {no_turbolink: true}
+        .float-right{data:{no_turbolink: true}}= paginate @posts
         .clear
         - if @posts.size >= 3
           .right
