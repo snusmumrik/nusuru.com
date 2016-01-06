@@ -48,9 +48,9 @@ group :development, :test do
   # gem 'guard-spring'
 end
 
-group :production do
-  gem 'rails_12factor'
-end
+# group :production do
+#   gem 'rails_12factor'
+# end
 
 gem 'aws-sdk', '< 2.0'
 gem 'cancancan'
