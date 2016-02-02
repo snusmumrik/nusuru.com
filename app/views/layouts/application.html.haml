@@ -5,13 +5,13 @@
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
-    %meta{:content => "ヌスルー情報局 沖縄の#{@description} 盗難車情報サイトです。", :name => "description"}/
-    %meta{:content => "ヌスルー情報局,#{@keywords},沖縄,盗難車,掲示板,バイク,スクーター,泥棒,原付,125,窃盗,窃盗団,アドレス,シグナス,pc", :name => "keywords"}/
+    %meta{:content => "ヌスルー情報局 沖縄のバイク #{@description} 盗難車情報サイトです。", :name => "description"}/
+    %meta{:content => "ヌスルー情報局,#{@keywords},沖縄,盗難車,掲示板,バイク,スクーター,原付,泥棒,窃盗", :name => "keywords"}/
     %meta{:content => "", :name => "author"}/
     %link{:href => "", :rel => "shortcut icon"}/
     = favicon_link_tag
     %title
-      ヌスルー情報局 #{@description}
+      沖縄のバイク盗難情報掲示板 ヌスルー情報局 #{@description}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags

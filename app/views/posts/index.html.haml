@@ -1,8 +1,11 @@
 .narrow
   .container
     .row
+      .col-md-12
+        .center
+          %h1 沖縄のバイク盗難情報の総合掲示板「ヌスルー情報局」
       .col-md-4
-        .title 盗難情報が<br>検索できます
+        .title.strong 盗難情報が<br>検索できます
         .clear
         .subtitle ※例 車体番号、<br>ナンバープレート、<br>車種、盗難場所など
         .clear
@@ -17,7 +20,7 @@
         .subtitle
           ヌスルー情報局のチラシを<br>ダウンロードし印刷して<br>周囲のひとに呼びかけましょう！
         .image
-          = link_to image_tag("/nusuru_s.jpg"), "/nusuru.jpg", "data-lightbox" => "/nusuru.jpg"
+          = link_to image_tag("/nusuru_s.jpg", alt: "ヌスルー情報局配布用チラシ"), "/nusuru.jpg", "data-lightbox" => "/nusuru.jpg"
           .download
             = link_to "ダウンロードはこちら", "/contents/downloadpdf/download"
 
@@ -30,7 +33,8 @@
         %table.table.table-striped.table-bordered
           - @posts.each do |post|
             %tr
-              %td.post-title= link_to post.title, post, data: {no_turbolink: true}
+              %td.post-title
+                %h2= link_to post.title, post, data: {no_turbolink: true}
             %tr
               %td
                 %ul

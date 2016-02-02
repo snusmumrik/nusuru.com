@@ -1,7 +1,8 @@
 .narrow
   %table.table.table-striped.table-bordered
     %tr
-      %td.post-title= @post.title
+      %td.post-title
+        %h1= @post.title
     %tr
       %td
         %ul
@@ -9,9 +10,11 @@
             - if @post.images
               - @post.images.each do |image|
                 = link_to image_tag(image.url(:thumb)), image.url(:medium), "data-lightbox" => image.url(:medium)
-          %li= "#{t('activerecord.attributes.post.location')}: #{@post.location}"
+          %li
+            %strong= "#{t('activerecord.attributes.post.location')}: #{@post.location}"
           %li= "#{t('activerecord.attributes.post.date')}: #{@post.date.strftime('%Y/%m/%d')}"
-          %li= "#{t('activerecord.attributes.post.model')}: #{@post.model}"
+          %li
+            %strong= "#{t('activerecord.attributes.post.model')}: #{@post.model}"
           %li= "#{t('activerecord.attributes.post.chassis_number')}: #{@post.chassis_number}"
           %li= "#{t('activerecord.attributes.post.registration_number')}: #{@post.registration_number}"
           %li= "#{t('activerecord.attributes.post.features')}: #{@post.features}"
@@ -24,7 +27,7 @@
               = link_to t("activerecord.models.reply"), "#{new_reply_path}/#{@post.id}", class: "btn btn-info"
 
             - if @post.user && @post.user.image
-              = link_to image_tag(@post.user.image.url(:thumb), height:60), @post.user.image.url(:medium), "data-lightbox" => @post.user.image.url(:medium)
+              = link_to image_tag(@post.user.image.url(:thumb), alt: @post.user.name, height:60), @post.user.image.url(:medium), "data-lightbox" => @post.user.image.url(:medium)
             = @post.user.name
             %span.small= @post.created_at.strftime("%Y/%m/%d %H:%M")
 

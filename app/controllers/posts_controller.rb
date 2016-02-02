@@ -9,10 +9,10 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     if params[:keyword]
-      @posts = Post.where("title LIKE ? OR location LIKE ? OR model LIKE ? OR chassis_number LIKE ? OR registration_number LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order("created_at DESC").page(params[:page]).per(10)
+      @posts = Post.includes(:images, :user).where("title LIKE ? OR location LIKE ? OR model LIKE ? OR chassis_number LIKE ? OR registration_number LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order("created_at DESC").page(params[:page]).per(10)
        # Post.arel_table[:title].matches("%#{params[:keyword]}%") OR Post.arel_table[:location].matches("%#{params[:keyword]}%") OR Post.arel_table[:model].matches("%#{params[:keyword]}%") OR Post.arel_table[:chassis_number].matches("%#{params[:keyword]}%") OR Post.arel_table[:registration_number].matches("%#{params[:keyword]}%") OR Post.arel_table[:features].matches("%#{params[:keyword]}%") OR Post.arel_table[:situation].matches("%#{params[:keyword]}%")
     else
-      @posts = Post.order("created_at DESC").page(params[:page]).per(10)
+      @posts = Post.includes(:images, :user).order("created_at DESC").page(params[:page]).per(10)
     end
   end
 
@@ -88,7 +88,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.includes(:images, :user).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
